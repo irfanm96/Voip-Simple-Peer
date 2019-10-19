@@ -74,7 +74,7 @@ public class ReceiveVoice extends Voice {
             sendVoice.start(); // start the thread
 
             //create thread for receiving packets
-            receiveVoice = new ReceiveVoice(sendPort);
+            receiveVoice = new ReceiveVoice(receivePort);
             receiveVoice.start();//start receiving packets
 
         } catch (Exception e) {
