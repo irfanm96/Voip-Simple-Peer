@@ -42,7 +42,6 @@ public class ReceiveVoice extends Voice {
         while (true) {
             try {
                 this.socket.receive(packet);
-//                System.out.println("received something");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -70,7 +69,7 @@ public class ReceiveVoice extends Voice {
         try {
 
             //create the thread for sending packets
-            sendVoice = new SendVoice(InetAddress.getByName(args[0]), sendPort,receivePort);
+            sendVoice = new SendVoice(InetAddress.getByName(args[0]), sendPort, receivePort);
             sendVoice.start(); // start the thread
 
             //create thread for receiving packets
