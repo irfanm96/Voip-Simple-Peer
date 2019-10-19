@@ -8,12 +8,15 @@ public class SendVoice extends Voice {
     private final int packetSize = 1000;
     private int port;
     private InetAddress peer;
+    private int peerPort;
     private DatagramSocket socket = null;
     private byte buffer[] = new byte[this.packetSize];
 
-    public SendVoice(InetAddress peer, int port) {
+    public SendVoice(InetAddress peer, int port,int peerPort) {
         this.peer = peer;
         this.port = port;
+        this.peerPort=peerPort;
+
     }
 
     private void send() {
@@ -24,9 +27,10 @@ public class SendVoice extends Voice {
                 count = this.getTargetDataLine().read(this.buffer, 0, this.buffer.length);  //capture sound into buffer
                 if (Integer.signum(count) > 0) {
                     // Construct the packet
-                    DatagramPacket packet = new DatagramPacket(this.buffer, this.buffer.length, this.peer, this.port);
+                    DatagramPacket packet = new DatagramPacket(this.buffer, this.buffer.length, this.peer, this.peerPort);
                     // Send the packet
                     this.socket.send(packet);
+//                    System.out.println("sent something");
                 }
             }
         } catch (IOException e) {
