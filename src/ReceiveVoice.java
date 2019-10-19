@@ -42,7 +42,7 @@ public class ReceiveVoice extends Voice {
         while (true) {
             try {
                 this.socket.receive(packet);
-                System.out.println("received something");
+//                System.out.println("received something");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
